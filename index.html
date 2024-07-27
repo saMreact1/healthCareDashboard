@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer></script>
+    <script src="patientApi.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js" defer></script>
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/assets/TestLogo.svg" alt="Tech.Care Logo">
+        </div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <img src="/assets/home_FILL0_wght300_GRAD0_opsz24.svg" alt="Overview">
+                    <p>Overview</p>
+                </li>
+                <li class="active">
+                    <img src="/assets/PATIENTS.svg" alt="Patients">
+                    <p>Patients</p>
+                </li>
+                <li>
+                    <img src="/assets/calendar_today_FILL0_wght300_GRAD0_opsz24.svg" alt="Calender">
+                    <p>Schedule</p>
+                </li>
+                <li>
+                    <img src="/assets/chat_bubble_FILL0_wght300_GRAD0_opsz24.svg" alt="Message">
+                    <p>Message</p>
+                </li>
+                <li>
+                    <img src="/assets/credit_card_FILL0_wght300_GRAD0_opsz24.svg" alt="Transactions">
+                    <p>Transactions</p>
+                </li>
+            </ul>
+        </div>
+        <div class="admin">
+            <img src="/assets/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc@2x.png" alt="General Practitioner image">
+            <p><b>Dr. Jose Simmons</b><br>General Practitioner</p>
+            <img src="/assets/settings_FILL0_wght300_GRAD0_opsz24.svg" alt="settings">
+            <img src="/assets/more_vert_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+        </div>
+    </header>
+
+    <main>
+        <section class="patientLists">
+            <span class="header">
+                <h3>Patients</h3>
+                <img src="/assets//search_FILL0_wght300_GRAD0_opsz24.svg" alt="">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/emily.jpg" alt="patient image">
+                    <p><span>Emily Williams</span> Female, 18</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/RYAN.png" alt="patient image">
+                    <p><span>Ryan Johnson</span> Male, 45</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/brandon.png" alt="patient image">
+                    <p><span>Brandon Mitchell</span> Male, 36</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient active"  id="jessica">
+                <span>
+                    <img src="/assets/jessica.png" alt="patient image">
+                    <p><span>Jessica Taylor</span> Female, 28</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/samantha.png" alt="patient image">
+                    <p><span>Samantha Johnson</span> Female, 56</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/ashley.png" alt="patient image">
+                    <p><span>Ashley Martinez</span> Female, 54</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/olivia.png" alt="patient image">
+                    <p><span>Olivia Brown</span> Female, 32</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/tyler.png" alt="patient image">
+                    <p><span>Tyler Davis</span> Male, 19</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/kevin.png" alt="patient image">
+                    <p><span>Kevin Anderson</span> Male, 30</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/dylan.png" alt="patient image">
+                    <p><span>Dylan Thompson</span> Male, 36</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/nathan.png" alt="patient image">
+                    <p><span>Nathan Evans</span> Male, 58</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+            <span class="patient">
+                <span>
+                    <img src="/assets/mike.png" alt="patient image">
+                    <p><span>Mike Nolan</span> Male, 31</p>
+                </span>
+                <img src="/assets/more_horiz_FILL0_wght300_GRAD0_opsz24.svg" alt="more">
+            </span>
+        </section>
+
+        <section class="patientDiagnosis">
+            <div class="diagnosisHistory">
+                <h3>Diagnosis History</h3>
+                <div id="graph">
+                    <div>
+                        <span class="canvas">
+                            <h4><b>Blood Pressure</b></h4>
+                            <p>Last 6 months  <img src="/assets/expand_more_FILL0_wght300_GRAD0_opsz24.svg" alt=""></p>
+                        </span>
+                        <canvas id="myChart" style="width: 75%;"></canvas>
+                    </div>
+                    <div>
+                        <div class="systolic">
+                            <p><i class="dot"></i> Systolic</p>
+                            <p class="systolicValue">160</p>
+                            <p><img src="/assets/ArrowUp.svg" alt=""> Higher than Average</p>
+                        </div>
+                        <div class="Diastolic">
+                            <p><i></i>Diastolic</p>
+                            <p class="systolicValue">78</p>
+                            <p><img src="/assets/ArrowDown.svg" alt=""> Lower than Average</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rate">
+                    <span class="respiratory">
+                        <img src="/assets/respiratory rate.svg" alt="respiratory image">
+                        <p>Respiratory Rate</p>
+                        <p id="respiratoryRate">-</p>
+                        <p id="respiratoryStatus">-</p>
+                    </span>
+                    <span class="temperature">
+                        <img src="/assets/temperature.svg" alt="respiratory image">
+                        <p>Temperature</p>
+                        <p id="temperature">-</p>
+                        <p id="temperatureStatus">-</p>
+                    </span>
+                    <span class="heart">
+                        <img src="/assets/HeartBPM.svg" alt="respiratory image">
+                        <p>Heart Rate</p>
+                        <p id="heartRate">-</p>
+                        <p id="heartRateStatus">-</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="diagnosticList">
+                <h3>Diagnostic List</h3>
+                <table id="table">
+                    <tr>
+                        <th>Problem/Diagnosis</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="patientDetails">
+            <div class="details">
+                <span class="head">
+                    <img src="" id="patientImage" alt="Patient image">
+                    <h3 id="patientName"></h3>
+                </span>
+                <div>
+                    <span>
+                        <img src="/assets/BirthIcon.jpg" alt="">
+                        <p>Date of Birth<br><b id="patientDOB"></b></p>
+                    </span>
+                    <span>
+                        <img src="/assets/FemaleIcon.svg" alt="">
+                        <p>Gender <br><b id="patientGender"></b></p>
+                    </span>
+                    <span>
+                        <img src="/assets/PhoneIcon.svg" alt="">
+                        <p>Contact Info <br><b id="patientContact"></b></p>
+                    </span>
+                    <span>
+                        <img src="/assets/PhoneIcon.svg" alt="">
+                        <p>Emergency Contact<br><b id="patientEmergency"></b></p>
+                    </span>
+                    <span>
+                        <img src="/assets/InsuranceIcon.svg" alt="">
+                        <p>Insurance Provider <br><b id="patientInsurance"></b></p>
+                    </span>
+                </div>
+                <button>Show All Informations</button>
+            </div>
+
+            <div class="labResults">
+                <h3>Lab Results</h3>
+                <div id="labResults"></div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
