@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer></script>
     <script src="patientApi.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js" defer></script>
-    
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
 </head>
 <body>
     <header>
@@ -149,18 +149,19 @@
                             <h4><b>Blood Pressure</b></h4>
                             <p>Last 6 months  <img src="/assets/expand_more_FILL0_wght300_GRAD0_opsz24.svg" alt=""></p>
                         </span>
-                        <canvas id="myChart" style="width: 75%;"></canvas>
+                        <canvas id="myChart"></canvas>
+                        <!-- <div id="container"></div> -->
                     </div>
                     <div>
                         <div class="systolic">
-                            <p><i class="dot"></i> Systolic</p>
-                            <p class="systolicValue">160</p>
-                            <p><img src="/assets/ArrowUp.svg" alt=""> Higher than Average</p>
+                            <h6><p></p> Systolic</h6>
+                            <p id="systolicValue">-</p>
+                            <p id="systolicStatus">-</p>
                         </div>
-                        <div class="Diastolic">
-                            <p><i></i>Diastolic</p>
-                            <p class="systolicValue">78</p>
-                            <p><img src="/assets/ArrowDown.svg" alt=""> Lower than Average</p>
+                        <div class="diastolic">
+                            <h6><p></p>Diastolic</h6>
+                            <p id="diastolicValue">-</p>
+                            <p id="diastolicStatus">-</p>
                         </div>
                     </div>
                 </div>

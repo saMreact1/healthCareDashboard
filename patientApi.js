@@ -20,6 +20,10 @@ const table = document.getElementById('table');
 const labResults = document.getElementById('labResults');
 
 const graph = document.getElementById('myChart').getContext('2d');
+const systolicValue = document.getElementById('systolicValue');
+const diastolicValue = document.getElementById('diastolicValue');
+const systolicStatus = document.getElementById('systolicStatus');
+const diastolicStatus = document.getElementById('diastolicStatus');
 
 //Basic Auth Encryption
 
@@ -46,6 +50,7 @@ jessicaDetails.addEventListener('click', function (e) {
         .then((response) => {
             let patientDetails = response.data[3];
             let patientDiagnosis = patientDetails.diagnosis_history[0];
+
 
             if (JSON.stringify(patientDetails)) {    // Patient details
                 patientImage.src = patientDetails.profile_picture;
@@ -91,16 +96,30 @@ jessicaDetails.addEventListener('click', function (e) {
 
                 // Patient chart
                 let xValues = [];
-                let yValues = [60, 80, 100,120,140,160,180];
+                let month = [];
+
                 let chartList = patientDetails.diagnosis_history;
                 let bloodPressure = patientDiagnosis.blood_pressure;
+                // let systolic = bloodPressure.systolic;
+                // let diastolic = bloodPressure.diastolic;
 
-                console.log(bloodPressure.systolic['value']);
+                systolicValue.innerHTML = bloodPressure.systolic['value'];
+                diastolicValue.innerHTML = bloodPressure.diastolic['value'];
+                systolicStatus.innerHTML = '<img src="/assets/ArrowUp.svg" alt="">' + ' ' + 'Higher than Average';
+                diastolicStatus.innerHTML = '<img src="/assets/ArrowDown.svg" alt="">' + ' ' + 'Lower than Average';
+
+                for (let i = 0; i < chartList.length; i++) {
+                    month = chartList[i];
+                    console.log(month)
+                }
+
+                console.log(bloodPressure)
+                console.log(bloodPressure.systolic['value'], bloodPressure.diastolic['value']);
 
                 for (let i = 0; i < chartList.length; i++) {
                     xValues.push(`${chartList[i].month.slice(0, 3)}, ${chartList[i].year}`)
                 }
-                console.log(xValues)
+                // console.log(xValues)
 
                 // for (let i = 60; i <= 180; i + 20) {
                 //     yValues.push([i])
@@ -117,7 +136,7 @@ jessicaDetails.addEventListener('click', function (e) {
                 new Chart(graph, {
                 type: "line",
                 data: {
-                    labels: xValues, yValues,
+                    labels: xValues,
                     datasets: [{ 
                     data: [2000,1140,1060,1060,1070,1110,1330,2210,7830,2478],
                     borderColor: "#8C6FE6",  //blue
@@ -132,6 +151,60 @@ jessicaDetails.addEventListener('click', function (e) {
                     legend: {display: false}
                 }
                 });
+                
+                // var data = [
+                //     ["Mar, 2003", 1, 0],
+                //     ["2004", 4, 0],
+                //     ["2005", 6, 0],
+                //     ["2006", 9, 1],
+                //     ["2007", 12, 2],
+                //     ["2008", 13, 5],
+                //     ["2009", 15, 6],
+                //     ["2010", 16, 9],
+                //     ["2011", 16, 10],
+                //     ["2012", 17, 11],
+                //     ["2013", 17, 13],
+                //     ["2014", 17, 14],
+                //     ["2015", 17, 14],
+                //     ["2016", 17, 14],
+                //     ["2017", 19, 16],
+                //     ["2018", 20, 17],
+                //     ["2019", 20, 19],
+                //     ["2020", 20, 20],
+                //     ["2021", 20, 20],
+                //     ["2022", 20, 22]
+                // ];
+
+                // anychart.onDocumentReady(function () {
+                    
+                //     // create a data set
+                //     var dataSet = anychart.data.set(data);
+
+                //     // map the data for all diagnosis
+                //     var systolicData = dataSet.mapAs({x: 0, value: 1});
+                //     var diastolicData = dataSet.mapAs({x: 0, value: 2});
+                    
+                //     // create a line chart
+                //     var chart = anychart.line();
+
+                //     // create the diagnosis and name them
+                //     var systolic = chart.line(systolicData);
+                //     systolic.name("Systolic");
+                //     var diastolic = chart.line(diastolicData);
+                //     diastolic.name("Diastolic");
+
+                //     // add a legend
+                //     chart.legend().enabled(false);
+                    
+                //     // add a title
+                //     // chart.title("Big Three's Grand Slam Title Race");
+
+                //     // specify where to display the chart
+                //     chart.container("container");
+                    
+                //     // draw the resulting chart
+                //     chart.draw();
+                // });
 
             } else {
                 console.log("Patient does not exist");
