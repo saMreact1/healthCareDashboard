@@ -96,11 +96,12 @@ jessicaDetails.addEventListener('click', function (e) {
 
                 // Patient chart
                 let xValues = [];
-                let month = [];
+                let patientSystolicValue = [];
+                let patientDiastolicValue = [];
 
                 let chartList = patientDetails.diagnosis_history;
                 let bloodPressure = patientDiagnosis.blood_pressure;
-                // let systolic = bloodPressure.systolic;
+                
                 // let diastolic = bloodPressure.diastolic;
 
                 systolicValue.innerHTML = bloodPressure.systolic['value'];
@@ -108,16 +109,15 @@ jessicaDetails.addEventListener('click', function (e) {
                 systolicStatus.innerHTML = '<img src="/assets/ArrowUp.svg" alt="">' + ' ' + 'Higher than Average';
                 diastolicStatus.innerHTML = '<img src="/assets/ArrowDown.svg" alt="">' + ' ' + 'Lower than Average';
 
-                for (let i = 0; i < chartList.length; i++) {
-                    month = chartList[i];
-                    console.log(month)
+                for (let i = 0; i < 6; i++) {
+                    patientSystolicValue.unshift(chartList[i].blood_pressure["systolic"].value);
+                    patientDiastolicValue.unshift(chartList[i].blood_pressure["diastolic"].value);
                 }
+                console.log(patientSystolicValue)
+                console.log(patientDiastolicValue)
 
-                console.log(bloodPressure)
-                console.log(bloodPressure.systolic['value'], bloodPressure.diastolic['value']);
-
-                for (let i = 0; i < chartList.length; i++) {
-                    xValues.push(`${chartList[i].month.slice(0, 3)}, ${chartList[i].year}`)
+                for (let i = 0; i < 6; i++) {
+                    xValues.unshift(`${chartList[i].month.slice(0, 3)}, ${chartList[i].year}`)
                 }
                 // console.log(xValues)
 
@@ -138,11 +138,11 @@ jessicaDetails.addEventListener('click', function (e) {
                 data: {
                     labels: xValues,
                     datasets: [{ 
-                    data: [2000,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+                    data: patientDiastolicValue,
                     borderColor: "#8C6FE6",  //blue
                     fill: false
                     }, { 
-                    data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+                    data: patientSystolicValue,
                     borderColor: "#C26EB4",   //purple
                     fill: false
                     }]
