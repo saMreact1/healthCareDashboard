@@ -102,7 +102,6 @@ jessicaDetails.addEventListener('click', function (e) {
                 let chartList = patientDetails.diagnosis_history;
                 let bloodPressure = patientDiagnosis.blood_pressure;
                 
-                // let diastolic = bloodPressure.diastolic;
 
                 systolicValue.innerHTML = bloodPressure.systolic['value'];
                 diastolicValue.innerHTML = bloodPressure.diastolic['value'];
@@ -113,25 +112,11 @@ jessicaDetails.addEventListener('click', function (e) {
                     patientSystolicValue.unshift(chartList[i].blood_pressure["systolic"].value);
                     patientDiastolicValue.unshift(chartList[i].blood_pressure["diastolic"].value);
                 }
-                console.log(patientSystolicValue)
-                console.log(patientDiastolicValue)
 
                 for (let i = 0; i < 6; i++) {
                     xValues.unshift(`${chartList[i].month.slice(0, 3)}, ${chartList[i].year}`)
                 }
-                // console.log(xValues)
-
-                // for (let i = 60; i <= 180; i + 20) {
-                //     yValues.push([i])
-                // }
-                // console.log(yValues)
-                // chartList.map(period => {
-                //     if (period >= 2) {
-                //         console.log("can't display more than 6 months")
-                //     } else {
-                //         xValues.push(`${period.month}, ${period.year}`)
-                //     }
-                // }).join("");
+                
 
                 new Chart(graph, {
                 type: "line",
@@ -151,60 +136,6 @@ jessicaDetails.addEventListener('click', function (e) {
                     legend: {display: false}
                 }
                 });
-                
-                // var data = [
-                //     ["Mar, 2003", 1, 0],
-                //     ["2004", 4, 0],
-                //     ["2005", 6, 0],
-                //     ["2006", 9, 1],
-                //     ["2007", 12, 2],
-                //     ["2008", 13, 5],
-                //     ["2009", 15, 6],
-                //     ["2010", 16, 9],
-                //     ["2011", 16, 10],
-                //     ["2012", 17, 11],
-                //     ["2013", 17, 13],
-                //     ["2014", 17, 14],
-                //     ["2015", 17, 14],
-                //     ["2016", 17, 14],
-                //     ["2017", 19, 16],
-                //     ["2018", 20, 17],
-                //     ["2019", 20, 19],
-                //     ["2020", 20, 20],
-                //     ["2021", 20, 20],
-                //     ["2022", 20, 22]
-                // ];
-
-                // anychart.onDocumentReady(function () {
-                    
-                //     // create a data set
-                //     var dataSet = anychart.data.set(data);
-
-                //     // map the data for all diagnosis
-                //     var systolicData = dataSet.mapAs({x: 0, value: 1});
-                //     var diastolicData = dataSet.mapAs({x: 0, value: 2});
-                    
-                //     // create a line chart
-                //     var chart = anychart.line();
-
-                //     // create the diagnosis and name them
-                //     var systolic = chart.line(systolicData);
-                //     systolic.name("Systolic");
-                //     var diastolic = chart.line(diastolicData);
-                //     diastolic.name("Diastolic");
-
-                //     // add a legend
-                //     chart.legend().enabled(false);
-                    
-                //     // add a title
-                //     // chart.title("Big Three's Grand Slam Title Race");
-
-                //     // specify where to display the chart
-                //     chart.container("container");
-                    
-                //     // draw the resulting chart
-                //     chart.draw();
-                // });
 
             } else {
                 console.log("Patient does not exist");
